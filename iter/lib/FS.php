@@ -13,10 +13,10 @@ class FSDirectory implements IteratorAggregate{
     }
     public function getIterator()
     {
-        return new FSDirectory($this);// TODO: Implement getIterator() method.
+        return new FSDirectoryIterator($this);// TODO: Implement getIterator() method.
     }
 }
-class FSDirectoryIterator implements IteratorAggregate{
+class FSDirectoryIterator implements Iterator{
     private $owner;
     private $d = null;
     private $cur = false;
