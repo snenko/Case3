@@ -9,11 +9,14 @@
 </head>
 <body>
 <?php
-$FNAME = "BOOK.txt";
+$FNAME = "book.txt";
 if(@$_REQUEST['doAdd']) {
     $f = fopen($FNAME, "a");
     if(@$_REQUEST['text']) fputs($f, htmlspecialchars($_REQUEST['text'])."\n");
     fclose($f);
+    $rnd = time();#время в секундах для уникального URL
+    header("Location: http://{$_SERVER['SERVER_NAME']}{$_SERVER['SCRIPT_NAME']}?$rnd"); # redirect
+    exit();
 }
 $gb = @file($FNAME);
 if(!$gb) $gb = [];
