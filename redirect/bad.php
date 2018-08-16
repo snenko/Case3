@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="кг">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -13,7 +13,7 @@
 $FNAME = "BOOK.txt";
 if(@$_REQUEST['doAdd']) {
     $f = fopen($FNAME, "a");
-    if(@$_REQUEST['text']) fputs($f, $_REQUEST['text']."\n");
+    if(@$_REQUEST['text']) fputs($f, htmlspecialchars($_REQUEST['text'])."\n");
     fclose($f);
 }
 $gb = @file($FNAME);
@@ -24,5 +24,10 @@ if(!$gb) $gb = [];
     <textarea name="text" cols="30" rows="10"></textarea> <br>
     <input type="submit" name="doAdd" value="Send">
 </form>
+<?php
+foreach ($gb as $text){?>
+    <?=$text?><br />
+    <hr/>
+<?php } ?>
 </body>
 </html>
